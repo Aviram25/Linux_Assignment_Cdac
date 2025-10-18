@@ -1,0 +1,100 @@
+Explore the file system and displaying current locations.
+
+pwd -> we are using it for to check the current working directory.
+
+ls -> is used for listing all the files and directories
+
+cd -> used for changing directories 
+
+
+2. Create directories `lab1/lab2/lab3` using one command.
+
+mkdir lab{1..3}  // Recursively create `lab1/lab2/lab3`
+
+// o/p -> lab1,lab2,lab3
+
+
+3. 10 files (`file1` to `file10`) inside `lab3` using one command.
+
+touch file{1..10}  // using a single command we can create multiple files at once
+
+
+4. Display logged user
+
+who  // will show you all the user of the terminal
+
+
+5. Use `ps` to list your processes and `kill` to terminate one.
+
+ps 		// to check all the processes
+
+sleep 30 &	// creating a process in the bg that tells the terminal to sleep for 30 sec
+
+ps aux		// list all the processes for all users, in user-oriented format, including processes that are not attached to terminal (exectubles)
+
+kill -9 20708	// using this commad we are killing a process running in bg (-9) is used to kill a process (20708) is the pno(process number)
+
+ps aux		// checking if the process is deleted 
+
+
+6. Copy all `.txt` files from one folder to another using wildcards.
+
+cp lab1/*.txt lab2  // copying all the .txt files form lab1 and putting it into lab2
+
+
+7.Use `cat`, `less`, `head`, `tail` to view file contents.
+
+cat file1  // is used to view the content inside a file or a directory 
+
+head -n 20 file1        # Display the first 20 lines in the file
+
+tail -n 20 file1        # Display the last 20 lines in the file
+
+less file1              # Provides a scrollable viewer
+
+more file1              # Displays one screen at a time
+
+
+8. Write a small C program and compile it using a `Makefile`. 
+
+
+sudo apt install build-essientials
+
+sudo apt install make
+
+sudo apt install gcc
+
+nano hello.c   		// nano is a command-line text editor commonly used in Linux and Unix-like systems
+
+<---------------inside hello.c---------------->
+
+#include<studio.h>
+
+int main(){
+	printf("Hello World!");
+	return 0;
+} 
+
+
+<---------------inside hello.c---------------->
+
+nano makefile
+
+<---------------inside makefile---------------->
+
+code: hello.c
+	gcc -o code hello.c
+
+<---------------inside makefile---------------->
+
+make
+./code
+
+
+
+
+
+
+
+
+
