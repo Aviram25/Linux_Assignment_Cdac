@@ -1,0 +1,120 @@
+1. Write a script to calculate factorial of a number using `while` loop.
+
+#!/bin/bash
+
+# Prompt the user to enter a number
+read -p "ENTER a num: " no
+
+# Initialize counter and factorial accumulator
+count=1
+temp=1
+
+# Loop from 1 to the entered number
+while [ $count -le $no ]
+do
+    # Multiply current count with temp to build factorial
+    temp=$(($count * $temp))
+    
+    # Increment the counter
+    ((count++))
+done
+
+# Display the final factorial result
+echo "Factorial of $no is: $temp"
+
+
+bash file.sh   //  run the shell script
+
+2. Write a script to print the multiplication table of a number given by the user.
+
+
+#!/bin/bash
+
+# Prompt the user to enter a number
+read -p "Enter a number: " num
+
+# Loop from 1 to 10 to generate the multiplication table
+for count in {1..10}
+do
+    # Calculate the product of the number and the current count
+    result=$((num * count))
+
+    # Display the result in a formatted way
+    echo "$num multiplied by $count is $result"
+done
+
+3. Write a script to count lines, words, and characters in a file.
+
+#!/bin/bash
+
+# Prompt the user to enter a filename
+read -p "Enter the filename: " filename
+
+# Check if the file exists and is readable
+if [ -r "$filename" ]; then
+    # Count lines, words, and characters using wc
+    lines=$(wc -l < "$filename")
+    words=$(wc -w < "$filename")
+    chars=$(wc -m < "$filename")
+
+    # Display the results
+    echo "📄 File: $filename"
+    echo "🧮 Lines: $lines"
+    echo "🔤 Words: $words"
+    echo "🔡 Characters: $chars"
+else
+    echo "❌ File does not exist or is not readable."
+fi
+
+
+
+4. Write a script to display a menu (date, calendar, list files, exit) and execute the chosen option.
+
+#!/bin/bash
+
+# Infinite loop to keep showing the menu until user exits
+while true
+do
+    # Display menu options
+    echo "======================"
+    echo "       MENU"
+    echo "======================"
+    echo "1. Display Date"
+    echo "2. Display Calendar"
+    echo "3. List Files in Current Directory"
+    echo "4. Exit"
+    echo "======================"
+
+    # Prompt user for choice
+    read -p "Enter your choice [1-4]: " choice
+
+    # Use case to handle user input
+    case $choice in
+        1)
+            # Show current date and time
+            echo " Current Date and Time:"
+            date
+            ;;
+        2)
+            # Show current month's calendar
+            echo " Calendar:"
+            cal
+            ;;
+        3)
+            # List files in the current directory
+            echo " Files in Current Directory:"
+            ls
+            ;;
+        4)
+            # Exit the script
+            echo " Exiting... Goodbye!"
+            break
+            ;;
+        *)
+            # Handle invalid input
+            echo " Invalid choice. Please enter a number between 1 and 4."
+            ;;
+    esac
+
+    echo ""  # Add a blank line for readability
+done
