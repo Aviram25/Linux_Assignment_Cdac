@@ -1,0 +1,174 @@
+1. Create a file and use `chmod` to set it to `rwx`.
+
+touch file1.txt 
+
+chmod a=rwx file1.txt   // changing mode of the file and giving it all permissions read/write/execute 
+
+ls -l  // gives you the details of the file like -> permissions of the user/group/others and more
+
+2. Create another file and change its owner using `chown`.
+
+touch file2.txt 
+
+ls -l    // first checks the current ownership
+
+sudo adduser newusername  // creates a new user
+
+sudo groupadd newgroupname  // creates a new group
+
+sudo usermod -aG newgroupname newusername  // this will add the new user to the new group
+
+sudo chown newowner:newgroup example.txt  // 
+
+
+3. Create a group and assign file access using `chgrp`.
+
+sudo groupadd grp1
+
+cat /etc/group  //on a Linux system will display the contents of the group database file
+
+sudo chgrp grp1 examples.txt   //  change the group of examples.txt to grp1
+
+
+4. Open a file in `vi`, insert text, save, and quit.
+
+vi file.txt  // opens the file file.txt in the Vi editor
+
+In Normal Mode:
+- i → Insert before cursor
+- a → Append after cursor
+- o → Open new line below
+- Esc → Return to Normal mode
+In Command-line Mode (:):
+- :w → Save (write)
+- :q → Quit
+- :wq → Save and quit
+- :q! → Quit without saving
+
+
+5. In `vi`, use find and replace to change a word in the file.
+
+:s/oldword/newword/    // - Replaces the first occurrence of oldword with newword in the current line.
+
+
+6. Write a shell script to print your name, roll number, and today’s date.
+
+nano file.sh   // will create a shell script
+
+<------------inside file.sh--------------->
+
+#!/bin/bash    
+
+# Define variables
+NAME="Aviram"
+ROLL="CS123456"
+DATE=$(date +"%d-%m-%Y")
+
+# Print the details
+echo "Name: $NAME"     // to access the value of name
+echo "Roll Number: $ROLL"
+echo "Date: $DATE"
+
+<------------inside file.sh--------------->
+
+7. Write a shell script that accepts two numbers and prints their sum, difference, and product.
+
+nano file1.sh   // will create a shell script
+
+
+<------------inside file1.sh--------------->
+
+#!/bin/bash
+
+# Prompt for input
+echo "Enter first number:"
+read num1
+
+echo "Enter second number:"
+read num2
+
+# Calculate and display results
+sum=$((num1 + num2))
+diff=$((num1 - num2))
+prod=$((num1 * num2))
+
+echo "Sum: $sum"
+echo "Difference: $diff"
+echo "Product: $prod"
+
+<------------inside file1.sh--------------->
+
+
+8. Write a script to check whether a file exists and is readable.
+
+nano file2.sh 
+
+<------------inside file1.sh--------------->
+
+#!/bin/bash
+
+# Prompt for filename
+echo "Enter the filename to check:"
+read filename
+
+# Check if file exists and is readable
+if [ -e "$filename" ]; then
+    if [ -r "$filename" ]; then
+        echo "The file '$filename' exists and is readable."
+    else
+        echo "The file '$filename' exists but is NOT readable."
+    fi
+else
+    echo "The file '$filename' does NOT exist."
+fi
+
+<------------inside file1.sh--------------->
+
+
+9. Write a script with a `for` loop to print numbers 1 to 15.
+
+
+<------------inside file1.sh--------------->
+
+
+#!/bin/bash
+
+# Loop from 1 to 15
+for ((i=1; i<=15; i++))
+do
+  echo "$i"
+done
+
+<------------inside file1.sh--------------->
+
+
+5. Write a script using `case` to check if a given character is a vowel or consonant.
+
+<------------inside file1.sh--------------->
+
+#!/bin/bash
+
+# Prompt the user for a character
+echo "Enter a single alphabet character:"
+read char
+
+# Convert to lowercase (optional, for case-insensitive match)
+char=$(echo "$char" | tr 'A-Z' 'a-z')
+
+# Check if it's a single alphabet character
+if [[ ! "$char" =~ ^[a-zA-Z]$ ]]; then
+  echo "❌ Please enter a valid single alphabet character."
+  exit 1
+fi
+
+# Use case to check for vowel or consonant
+case "$char" in
+  a|e|i|o|u)
+    echo "✅ '$char' is a vowel."
+    ;;
+  *)
+    echo "🔤 '$char' is a consonant."
+    ;;
+esac
+
+<------------inside file1.sh--------------->
