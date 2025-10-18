@@ -58,12 +58,12 @@ if [ -r "$filename" ]; then
     chars=$(wc -m < "$filename")
 
     # Display the results
-    echo "📄 File: $filename"
-    echo "🧮 Lines: $lines"
-    echo "🔤 Words: $words"
-    echo "🔡 Characters: $chars"
+    echo " File: $filename"
+    echo " Lines: $lines"
+    echo " Words: $words"
+    echo " Characters: $chars"
 else
-    echo "❌ File does not exist or is not readable."
+    echo " File does not exist or is not readable."
 fi
 
 
@@ -117,4 +117,5 @@ do
     esac
 
     echo ""  # Add a blank line for readability
+
 done
