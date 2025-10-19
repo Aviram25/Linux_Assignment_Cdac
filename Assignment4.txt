@@ -1,0 +1,104 @@
+1. Write a shell script that accepts a file name as an argument and display whether it is a directory, a regular file, or something else.
+
+#!/bin/bash
+
+# Check if a filename was provided as an argument
+if [ $# -eq 0 ]; then
+    echo " No filename provided. Usage: $0 <filename>"
+    exit 1
+fi
+
+# Store the argument in a variable
+file="$1"
+
+# Check the type of the file
+if [ -d "$file" ]; then
+    echo "'$file' is a directory."
+elif [ -f "$file" ]; then
+    echo " '$file' is a regular file."
+else
+    echo "'$file' is neither a regular file nor a directory."
+fi
+
+2. Write a script that reads a number and print whether it is positive negative or zero.
+
+
+#!/bin/bash
+
+# Prompt the user to enter a number
+read -p "Enter a number: " num
+
+# Check if the input is a valid number (optional but good practice)
+if ! [[ "$num" =~ ^-?[0-9]+$ ]]; then
+    echo "Invalid input. Please enter an integer."
+    exit 1
+fi
+
+# Determine if the number is positive, negative, or zero
+if [ "$num" -gt 0 ]; then
+    echo "$num is a positive number."
+elif [ "$num" -lt 0 ]; then
+    echo " $num is a negative number."
+else
+    echo "The number is zero."
+fi
+
+
+3. Write a script that accepts a username and checks whether the user is currently logged in.
+
+
+#!/bin/bash
+
+# Prompt the user to enter a username
+read -p "Enter a username to check: " username
+
+# Use the 'who' command to list logged-in users and grep for the given username
+if who | grep -wq "$username"; then
+    echo "User '$username' is currently logged in."
+else
+    echo "User '$username' is NOT logged in."
+fi
+
+
+4. Write a script that prints first 10 natural number using until loop.
+
+#!/bin/bash
+
+# Initialize the counter
+num=1
+
+# Loop until num exceeds 10
+until [ $num -gt 10 ]
+do
+    # Print the current number
+    echo "$num"
+
+    # Increment the counter
+    ((num++))
+done
+
+
+5. Write a script that demonstrates use of functions by creating one for addition and one for subtraction.
+
+
+#!/bin/bash
+
+# Function to perform addition
+add() {
+    result=$(( $1 + $2 ))
+    echo " Addition: $1 + $2 = $result"
+}
+
+#  Function to perform subtraction
+subtract() {
+    result=$(( $1 - $2 ))
+    echo " Subtraction: $1 - $2 = $result"
+}
+
+#  Prompt user for two numbers
+read -p "Enter first number: " num1
+read -p "Enter second number: " num2
+
+# Call the functions with user input
+add $num1 $num2
+subtract $num1 $num2
